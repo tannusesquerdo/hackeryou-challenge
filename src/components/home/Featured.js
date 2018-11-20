@@ -1,32 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'reactn';
 import { Row, Container, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 export default class Featured extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      beers: []
-    }
-  }
-
-  componentDidMount() {
-    this._renderBeers(this.props.beers);
-  }
-
-  componentWillReceiveProps(nextProps) {
-		if (!this.props.beers.length && nextProps.beers.length) {
-			this._renderBeers(nextProps.beers);
-		}
-	}
-
-  _renderBeers(beers) {
-    this.setState({
-      beers: beers.slice(0, 4)
-    })
-  }
-
   render() {
     return (
       <Row className="featured-beers">
@@ -38,7 +14,7 @@ export default class Featured extends Component {
             </Col>
           </Row>
           <Row className="beers">
-            {this.state.beers.map((beer, i) => {
+            {this.global.beers.slice(0, 4).map((beer, i) => {
               return (
                 <Col key={i} sm="12" md="6" lg="3">
                   <Link to={`/beer/${beer.id}`}>

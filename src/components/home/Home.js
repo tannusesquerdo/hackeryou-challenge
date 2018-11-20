@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'reactn';
 import Featured from './Featured';
 import Hero from '../shared/Hero';
 
@@ -9,14 +9,14 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
+    console.log(this.global.beers, 'HOOOOOOME');
   }
 
   render() {
     return (
       <div className="page">
         <Hero title="Home" subtitle="Hello from the home page!" />
-        <Featured {...this.props} />
+        <Featured {...this.global} />
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'reactn';
 import { Container, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import TransitionGroup from "react-transition-group/TransitionGroup";
@@ -18,11 +18,11 @@ class Beers extends Component {
   }
 
   componentDidMount() {
-    this._renderBeers(this.props.beers);
+    this._renderBeers(this.global.beers);
   }
 
   componentWillReceiveProps(nextProps) {
-		if (!this.props.beers.length && nextProps.beers.length) {
+		if (!this.global.beers.length && nextProps.beers.length) {
 			this._renderBeers(nextProps.beers);
 		}
 	}
@@ -45,16 +45,25 @@ class Beers extends Component {
   }
 
   render() {
+    const { beers } = this.global;
+    const animations = beers.map((_, i) => new Animated.Value(0));
+    Animated.stagger(
+      100,
+      animations.map(anim =>
+        Animated.spring(anim, { toValue: 1 })
+      )
+    ).start();
+
     return (
       <div className="page">
         <Hero title="OUR BEER" subtitle="find out more about" />
         <Container className="contents section">
           <TransitionGroup component="div" className="row">
-            {this.state.beers.map((beer, i) => {
+            {this.global.beers.map((beer, i) => {
               const style = {
-                opacity: this.state.animations[i],
+                opacity: animations[i],
                 transform: Animated.template`
-                  translate3d(0,${this.state.animations[i].interpolate({
+                  translate3d(0,${animations[i].interpolate({
                   inputRange: [0, 1],
                   outputRange: ["12px", "0px"]
                 })},0)
