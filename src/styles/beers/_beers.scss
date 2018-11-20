@@ -1,0 +1,89 @@
+.page {
+  background: $white;
+}
+
+.contents {
+  margin-top: 60px;
+
+  .beer-wrapper {
+    border-right: 1px solid #ededed;
+    border-bottom: 1px solid #ededed;
+    padding-bottom: 16px;
+
+    &:nth-child(4n+1) {
+      border-left: 1px solid #ededed;
+    }
+
+    &:nth-child(-n+4) {
+      border-top: 1px solid #ededed;
+    }
+
+    h4 {
+      font-size: 20px;
+      text-align: center;
+      font-weight: 700;
+      text-transform: lowercase;
+      letter-spacing: 2px;
+      font-family: $beausFont;
+    }
+
+    a, a h4, img {
+      transition: all 300ms ease-in-out;
+    }
+
+    a:hover {
+      > img {
+        transform: scale(.95);
+      }
+
+      > h4 {
+        color: $darkBrown;
+      }
+    }
+  }
+}
+
+.beer-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.beer-header {
+  margin-bottom: 30px;
+
+  h2 {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 800;
+    margin-top: 30px;
+  }
+}
+
+.desc {
+  padding: 20px 30px;
+
+  p {
+    font-size: 16px;
+  }
+}
+
+.stores {
+  display: flex;
+  border: 1px solid rgba(0,0,0,.05);
+  text-align: center;
+
+  &-title {
+    font-family: $beausFont;
+    text-transform: lowercase;
+    color: $darkBrown;
+    text-shadow: -2px 1px 0 $tealish;
+  }
+
+  &-pre-title {
+    text-transform: lowercase;
+    margin-bottom: 0;
+  }
+}

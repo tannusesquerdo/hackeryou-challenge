@@ -1,0 +1,46 @@
+.featured-beers {
+  text-align: center;
+  background-color: $white;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-left: -23px;
+  margin-right: -23px;
+
+  .featured-title {
+    font-family: $beausFont;
+    text-transform: lowercase;
+    color: $darkBrown;
+    text-shadow: -2px 1px 0 $tealish;
+  }
+
+  .featured-pre-title {
+    text-transform: lowercase;
+    margin-bottom: 0;
+  }
+
+  .beers {
+    margin-top: 40px;
+
+    .beer {
+      .image {
+        position: relative;
+      }
+
+      h3 {
+        font-size: 18px;
+        font-weight: 800;
+        letter-spacing: 3px;
+        text-transform: lowercase;
+        font-family: $beausFont;
+
+        &:hover {
+          color: $darkBrown;
+        }
+      }
+
+      a, a h3, img {
+        transition: all 300ms ease-in-out;
+      }
+    }
+  }
+}

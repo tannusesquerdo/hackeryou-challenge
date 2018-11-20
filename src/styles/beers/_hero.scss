@@ -1,0 +1,28 @@
+.hero {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  min-height: calc(320px + 62px);
+  background-color: #1b1d1e;
+
+  &-title {
+    font-size: 64px;
+    font-family: $beausFont;
+    letter-spacing: .3px;
+    text-transform: uppercase;
+    line-height: 1.3em;
+    font-weight: 800;
+    color: $white;
+  }
+
+  &-subtitle {
+    font-size: 21px;
+    letter-spacing: .3px;
+    text-transform: lowercase;
+    line-height: 1.3em;
+    color: $lightBrown;
+    margin-bottom: 5px;
+    font-weight: 600
+  }
+}
