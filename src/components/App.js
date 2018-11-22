@@ -12,7 +12,7 @@ import Home from './home/Home';
 import Beers from './beers/Beers';
 import BeerItem from './beers/BeerItem';
 
-const ACCESS_KEY = 'MDozY2I2YTUxMi1lYTAzLTExZTgtOWMwZC05N2MzZjEzYWNlODI6eVBZbVlSN1g4VzBsTFVHUmF3UHZlUms2WFRnTzhkUFVIeXRt';
+const ACCESS_KEY = process.env.REACT_APP_API_KEY;
 const api = 'https://lcboapi.com';
 const query = 'beaus&where=is_seasonal&where_not=is_dead&per_page=25';
 
