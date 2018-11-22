@@ -12,7 +12,6 @@ export default class AnimatedSwitch extends Switch {
   }
 
   componentDidMount() {
-    console.log("componentWillEnter");
     setTimeout(
       () => Animated.spring(this.state.animate, { toValue: 1 }).start(),
       250
@@ -20,7 +19,6 @@ export default class AnimatedSwitch extends Switch {
   }
 
   componentWillUnmount() {
-    console.log("componentWillLeave");
     setTimeout(
       () => Animated.spring(this.state.animate, { toValue: 0 }).start(),
       175
