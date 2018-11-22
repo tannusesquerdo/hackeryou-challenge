@@ -41,7 +41,7 @@ export default class BeerItem extends Component {
         this.setGlobal({ selectedBeer: beer[0] });
       }
 
-      const ACCESS_KEY = 'MDozY2I2YTUxMi1lYTAzLTExZTgtOWMwZC05N2MzZjEzYWNlODI6eVBZbVlSN1g4VzBsTFVHUmF3UHZlUms2WFRnTzhkUFVIeXRt';
+      const ACCESS_KEY = process.env.REACT_APP_API_KEY;
       const product_id = this.props.match.params.id;
 
       fetch(`https://lcboapi.com/stores?product_id=${product_id}&access_key=${ACCESS_KEY}`)
