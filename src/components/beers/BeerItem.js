@@ -8,7 +8,13 @@ import {
   NavLink,
   TabContent,
   TabPane,
-  Table
+  Table,
+  Card,
+  CardBody,
+  CardTitle,
+  CardText,
+  CardSubtitle,
+  CardLink
 } from 'reactstrap';
 import classnames from 'classnames';
 
@@ -27,18 +33,35 @@ export default class BeerItem extends Component {
 
   componentDidMount() {
     if(this.global.beers.length) {
-      const { beers } = this.global;
-      let beer = beers.filter(beer => {
+
+      let beer = this.global.beers.filter(beer => {
         return beer.id.toString() === this.props.match.params.id;
       });
       if (beer.length) {
         this.setGlobal({ selectedBeer: beer[0] });
       }
+
+      const ACCESS_KEY = 'MDozY2I2YTUxMi1lYTAzLTExZTgtOWMwZC05N2MzZjEzYWNlODI6eVBZbVlSN1g4VzBsTFVHUmF3UHZlUms2WFRnTzhkUFVIeXRt';
+      const product_id = this.props.match.params.id;
+
+      fetch(`https://lcboapi.com/stores?product_id=${product_id}&access_key=${ACCESS_KEY}`)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          this.setGlobal({ stores: data.result })
+        })
+
     }
   }
 
   componentWillUnmount() {
-    this.setGlobal({ selectedBeer: {} });
+    this.setGlobal(
+      {
+        selectedBeer: {},
+        stores: []
+      }
+    );
   }
 
   toggle(tab) {
@@ -51,7 +74,7 @@ export default class BeerItem extends Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Hero title={this.global.selectedBeer && this.global.selectedBeer.name} subtitle={this.global.selectedBeer && this.global.selectedBeer.varietal} />
         <Container fluid className="section">
           <Container>
@@ -133,17 +156,34 @@ export default class BeerItem extends Component {
         <Container fluid className="section stores">
           <Container>
             <Row >
-              <Col>
+              <Col className="map-header">
                 <h2 className="stores-pre-title">find our beer</h2>
                 <h1 className="stores-title">Available at…</h1>
               </Col>
             </Row>
-            <Row>
-              <Map />
+            <Row className="map-container">
+              <Col sm="9">
+                <Map {...this.global} />
+              </Col>
+              <Col sm="3" className="stores-card">
+                {this.global.stores.map((store, i) => {
+                  return (
+                    <Card>
+                      <CardBody>
+                        <CardTitle>{store.name}</CardTitle>
+                        <CardSubtitle>{store.address_line_1} - {store.city}</CardSubtitle>
+                      </CardBody>
+                      <CardBody>
+                        <CardLink href={`https://www.google.com/maps/dir/Current+Location/${store.latitude},${store.longitude}`}>Get Directions</CardLink>
+                      </CardBody>
+                    </Card>
+                  )
+                })}
+              </Col>
             </Row>
           </Container>
         </Container>
-			</div>
+			</React.Fragment>
     );
   }
 }

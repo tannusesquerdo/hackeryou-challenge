@@ -2,7 +2,7 @@ import React, { Component } from 'reactn';
 import { Route } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import AnimatedSwitch from './AnimatedSwitch';
-import { addReducer, setGlobal, useGlobal } from 'reactn';
+import { addReducer, setGlobal } from 'reactn';
 
 import logo from '../logo.svg';
 import '../styles/App.scss';
@@ -22,15 +22,6 @@ setGlobal({
   selectedBeer: {}
 })
 
-addReducer('getStores', (productId) => {
-  fetch(`${api}/stores?product_id=${productId}&access_key=${ACCESS_KEY}`)
-    .then(response => response.json())
-    .then(data => ({
-      stores: data.result
-    }))
-})
-
-
 class App extends Component {
   componentDidMount() {
     this.setGlobal(
@@ -47,38 +38,40 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <TopBar />
-        <Route
-					render={({ location }) => (
-						<TransitionGroup component="main" className="wrapper">
-              <CSSTransition timeout={125}>
-                <AnimatedSwitch
-                  key={location.key}
-                  location={location}
-                >
-                  <Route exact
-                    path="/"
-                    render={props => (
-                      <Home {...props} />
-                    )} />
-                  <Route
-                    path="/beers"
-                    render={props => (
-                      <Beers {...props} />
-                    )}
-                  />
-                  <Route
-                    path="/beer/:id"
-                    render={props => (
-                      <BeerItem {...props} />
-                    )}
-                  />
-                </AnimatedSwitch>
-              </CSSTransition>
-						</TransitionGroup>
-					)}
-				/>
-        <Footer />
+        <div className="wrapper">
+          <TopBar />
+          <Route
+            render={({ location }) => (
+              <TransitionGroup className="container-fluid section no-padding">
+                <CSSTransition timeout={125}>
+                  <AnimatedSwitch
+                    key={location.key}
+                    location={location}
+                  >
+                    <Route exact
+                      path="/"
+                      render={props => (
+                        <Home {...props} />
+                      )} />
+                    <Route
+                      path="/beers"
+                      render={props => (
+                        <Beers {...props} />
+                      )}
+                    />
+                    <Route
+                      path="/beer/:id"
+                      render={props => (
+                        <BeerItem {...props} />
+                      )}
+                    />
+                  </AnimatedSwitch>
+                </CSSTransition>
+              </TransitionGroup>
+            )}
+          />
+          <Footer />
+        </div>
       </div>
     );
   }

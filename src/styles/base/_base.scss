@@ -30,3 +30,11 @@ a:link, a:active, a:visited {
 p:last-child {
   margin-bottom: 0;
 }
+
+.no-padding {
+  padding: 0 !important;
+}
+
+.no-padding-top {
+  padding-top: 0 !important;
+}

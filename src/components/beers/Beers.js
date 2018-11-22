@@ -55,9 +55,9 @@ class Beers extends Component {
     ).start();
 
     return (
-      <div className="page">
+      <div className="section no-padding-top">
         <Hero title="OUR BEER" subtitle="find out more about" />
-        <Container className="contents section">
+        <Container className="contents">
           <TransitionGroup component="div" className="row">
             {this.global.beers.map((beer, i) => {
               const style = {

@@ -73,7 +73,6 @@
 .stores {
   display: flex;
   border: 1px solid rgba(0,0,0,.05);
-  text-align: center;
 
   &-title {
     font-family: $beausFont;
@@ -85,5 +84,52 @@
   &-pre-title {
     text-transform: lowercase;
     margin-bottom: 0;
+  }
+
+  .map-header {
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  .map-container {
+    div[class*='col-sm'] {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .stores-card {
+      max-height: 500px;
+      overflow: hidden;
+      overflow-y: scroll;
+      padding-bottom: 0px;
+
+      .card {
+        border-radius: 0;
+        border-bottom-width: 0;
+
+        &:last-child {
+          border-bottom-width: 1px;
+        }
+
+        &:hover {
+          background: #ededed;
+        }
+
+        .card-body {
+          .card-title {
+            font-size: 16px;
+            font-weight: 700;
+          }
+
+          .card-subtitle {
+            font-size: 13px;
+            color: rgba(0,0,0,.54);
+          }
+
+          .get-directions {
+            padding: 15px 17px;
+          }
+        }
+      }
+    }
   }
 }

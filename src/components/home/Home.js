@@ -1,22 +1,17 @@
 import React, { Component } from 'reactn';
+import { Button } from 'reactstrap';
 import Featured from './Featured';
 import Hero from '../shared/Hero';
 
 class Home extends Component {
-  // eslint-disable-next-line no-useless-constructor
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount() {
-    console.log(this.global.beers, 'HOOOOOOME');
-  }
-
   render() {
     return (
-      <div className="page">
-        <Hero title="Home" subtitle="Hello from the home page!" />
+      <div className="section no-padding-top">
+        <Hero title="seasonal beverages" subtitle="A very warm welcome to our" />
         <Featured {...this.global} />
+        <div className="btn-explore">
+          <Button onClick={() => this.props.history.push(`/beers`)} className="btn" size="lg">Explore</Button>
+        </div>
       </div>
     );
   }
